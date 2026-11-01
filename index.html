@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Two Routes to Bethesda — Madison’s Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDF1EF; --surface:#FFFFFF; --ink:#14254A; --text:#1E2A3A; --muted:#5B6B7A;
+  --brass:#9C7A33; --signal:#B3322B; --rule:#C9D3D1; --routeA:#14254A; --routeB:#2E6E68;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1626; --surface:#162135; --ink:#E6ECEA; --text:#D5DDE0; --muted:#93A3B2;
+    --brass:#D4AE5E; --signal:#E36A60; --rule:#2A3A52; --routeA:#8FA8D8; --routeB:#6FC1B6;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1626; --surface:#162135; --ink:#E6ECEA; --text:#D5DDE0; --muted:#93A3B2;
+  --brass:#D4AE5E; --signal:#E36A60; --rule:#2A3A52; --routeA:#8FA8D8; --routeB:#6FC1B6;
+  color-scheme:dark;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--text);font-family:var(--body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
+a{color:var(--routeB)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+
+/* Hero */
+header.hero{padding:3rem 0 1.5rem}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2.6rem,9vw,5rem);line-height:.95;letter-spacing:-.01em;color:var(--ink);margin:0 0 .75rem}
+.hero p.lede{max-width:38rem;font-size:1.15rem;margin:0;color:var(--text)}
+.merge{display:block;width:100%;max-width:40rem;height:auto;margin:1.75rem 0 .5rem}
+.merge text{font-family:var(--display);font-weight:600}
+
+/* Section */
+section{padding:2rem 0;border-top:1px solid var(--rule)}
+h2{font-family:var(--display);font-weight:700;font-size:2rem;line-height:1.05;color:var(--ink);margin:0 0 1rem}
+h3{font-family:var(--display);font-weight:600;font-size:1.45rem;line-height:1.1;margin:0}
+.prose{max-width:40rem}
+.prose p{margin:0 0 1rem}
+
+.compare{display:grid;gap:1rem;grid-template-columns:1fr;max-width:52rem}
+@media (min-width:640px){.compare{grid-template-columns:1fr 1fr}}
+.compare div{padding:1rem 1.1rem;border-left:4px solid var(--routeA);background:var(--surface)}
+.compare div.b{border-left-color:var(--routeB)}
+.compare strong{font-family:var(--display);font-size:1.25rem;font-weight:600;display:block;color:var(--ink)}
+.compare p{margin:.35rem 0 0;font-size:1rem}
+
+/* Routes */
+.tabs{display:flex;gap:.5rem;margin:0 0 1.25rem}
+.tabs button{flex:1;font-family:var(--display);font-size:1.15rem;font-weight:600;padding:.7rem .5rem;border:2px solid var(--rule);background:transparent;color:var(--muted);cursor:pointer;border-radius:3px}
+.tabs button[aria-selected="true"][data-route="a"]{border-color:var(--routeA);color:var(--routeA)}
+.tabs button[aria-selected="true"][data-route="b"]{border-color:var(--routeB);color:var(--routeB)}
+.routes{display:grid;gap:2.5rem}
+.route[hidden]{display:none}
+@media (min-width:860px){
+  .tabs{display:none}
+  .routes{grid-template-columns:1fr 1fr}
+  .route[hidden]{display:block}
+}
+.route h3{margin-bottom:.25rem}
+.route .sub{color:var(--muted);font-size:.95rem;margin:0 0 1.25rem}
+.route.a h3{color:var(--routeA)} .route.b h3{color:var(--routeB)}
+ol.timeline{list-style:none;margin:0;padding:0;position:relative}
+ol.timeline li{position:relative;padding:0 0 1.5rem 1.6rem;border-left:3px solid var(--routeA)}
+.route.b ol.timeline li{border-left-color:var(--routeB)}
+ol.timeline li:last-child{border-left-color:transparent}
+ol.timeline li::before{content:"";position:absolute;left:-9px;top:.3rem;width:15px;height:15px;border-radius:50%;background:var(--paper);border:3px solid var(--routeA)}
+.route.b ol.timeline li::before{border-color:var(--routeB)}
+ol.timeline li.end::before{background:var(--brass);border-color:var(--brass)}
+.when{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--ink);display:block}
+.when .due{color:var(--signal)}
+ol.timeline p{margin:.2rem 0 0;font-size:1rem}
+.note{font-size:.95rem;color:var(--muted);margin-top:.5rem;padding:.75rem 1rem;background:var(--surface);border-left:4px solid var(--brass)}
+
+/* Checklist */
+ul.do{list-style:none;padding:0;margin:0;display:grid;gap:1rem;grid-template-columns:1fr;max-width:56rem}
+@media (min-width:700px){ul.do{grid-template-columns:1fr 1fr}}
+ul.do li{background:var(--surface);padding:1rem 1.1rem;border-top:3px solid var(--brass)}
+ul.do strong{font-family:var(--display);font-size:1.2rem;font-weight:600;color:var(--ink);display:block;margin-bottom:.2rem}
+ul.do span{font-size:1rem}
+
+dl.facts{display:grid;grid-template-columns:1fr;gap:.25rem 1.5rem;max-width:44rem;margin:0}
+@media (min-width:600px){dl.facts{grid-template-columns:12rem 1fr}}
+dl.facts dt{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--ink)}
+dl.facts dd{margin:0 0 .75rem}
+
+footer{padding:2rem 0 3rem;border-top:1px solid var(--rule);font-size:.9rem;color:var(--muted)}
+footer ul{padding-left:1.1rem;margin:.5rem 0 1rem}
+footer li{margin:.2rem 0}
+@media (prefers-reduced-motion:no-preference){
+  .merge path.line{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1.6s ease-out .2s forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <h1>Two routes to Bethesda</h1>
+  <p class="lede">Madison, both paths end at the Uniformed Services University medical school in Bethesda. Here’s how each one gets there, year by year, and what to do now no matter which door opens.</p>
+  <svg class="merge" viewBox="0 0 640 170" role="img" aria-label="Two routes, the Naval Academy and civilian pre-med, joining at Bethesda">
+    <path class="line" d="M10 30 C 220 30, 300 30, 420 85 L 560 85" fill="none" stroke="var(--routeA)" stroke-width="5" stroke-linecap="round"/>
+    <path class="line" d="M10 140 C 220 140, 300 140, 420 85" fill="none" stroke="var(--routeB)" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="590" cy="85" r="18" fill="var(--brass)"/>
+    <text x="10" y="20" fill="var(--routeA)" font-size="19">Naval Academy · Class of 2031</text>
+    <text x="10" y="166" fill="var(--routeB)" font-size="19">Loyola → civilian pre-med</text>
+    <text x="520" y="125" fill="var(--ink)" font-size="22">Bethesda</text>
+  </svg>
+</header>
+
+<section aria-labelledby="short">
+  <h2 id="short">The short version</h2>
+  <div class="prose">
+    <p>The civilian route isn’t the backup plan. For getting to medical school, it’s arguably the more direct one: USUHS takes civilians straight from college, and she could start there in 2030 instead of 2031.</p>
+    <p>The Naval Academy is a great path to being a naval officer, but only a handful of midshipmen go directly to medical school each year. Its goal is 3 to 15 out of a class of about 1,000.</p>
+  </div>
+  <div class="compare">
+    <div><strong>If USNA says yes</strong><p>Bethesda in summer 2031 at the earliest, if selected for one of the few medical school slots. Otherwise she serves as a line officer first.</p></div>
+    <div class="b"><strong>If USNA says no</strong><p>Bethesda in summer 2030 if admitted. She’s commissioned as an ensign when she starts, with pay and no tuition.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="routes">
+  <h2 id="routes">Year by year</h2>
+  <div class="tabs" role="tablist" aria-label="Choose a route">
+    <button role="tab" id="tab-a" data-route="a" aria-selected="true" aria-controls="route-a">Naval Academy</button>
+    <button role="tab" id="tab-b" data-route="b" aria-selected="false" aria-controls="route-b">Civilian pre-med</button>
+  </div>
+  <div class="routes">
+    <div class="route a" id="route-a" role="tabpanel" aria-labelledby="tab-a">
+      <h3>Route A: Naval Academy</h3>
+      <p class="sub">Enter summer 2027, graduate May 2031</p>
+      <ol class="timeline">
+        <li><span class="when">Fall 2026 – <span class="due">Jan 31, 2027</span></span><p>Finish the USNA application and nominations by the January 31 deadline. Keep Loyola grades high: every college grade goes on the medical school application later, even if she transfers to USNA.</p></li>
+        <li><span class="when">By mid-April 2027</span><p>Most candidates hear their final status by April 15. Appointees accept or decline by May 1.</p></li>
+        <li><span class="when">Summer 2027</span><p>Induction Day and plebe summer. She starts the full four-year program; some Loyola courses may let her validate classes.</p></li>
+        <li><span class="when">2027 – 2029</span><p>Take pre-med prerequisites alongside her major (many pre-med midshipmen choose chemistry). Connect early with USNA’s Premedical and Predental Advising Committee.</p></li>
+        <li><span class="when">Spring 2030</span><p>Take the MCAT, ideally once and well prepared.</p></li>
+        <li><span class="when">Summer – fall 2030</span><p>Apply to medical school with the committee’s approval and compete for Medical Corps service selection. Slots are very limited.</p></li>
+        <li class="end"><span class="when">May 2031</span><p>Graduate and commission. If selected, start USUHS that summer. If not, serve at least five years as an officer, then apply later.</p></li>
+      </ol>
+    </div>
+
+    <div class="route b" id="route-b" role="tabpanel" aria-labelledby="tab-b" hidden>
+      <h3>Route B: Civilian pre-med</h3>
+      <p class="sub">Stay at Loyola (or transfer to UMD), start USUHS summer 2030</p>
+      <ol class="timeline">
+        <li><span class="when">2026 – 27 · First year</span><p>Biology and general chemistry with strong grades. Meet Loyola’s pre-health advisors. Start steady clinical volunteering.</p></li>
+        <li><span class="when">Spring 2027</span><p>Decide whether to stay at Loyola or transfer. Transfer deadlines usually fall before USNA decisions arrive, so apply to transfer early if she wants that option open.</p></li>
+        <li><span class="when">Summer 2027</span><p>Build clinical hours: EMT certification, scribing, or hospital volunteering.</p></li>
+        <li><span class="when">2027 – 28 · Second year</span><p>Organic chemistry. Join a research lab and stay with it.</p></li>
+        <li><span class="when">2028 – 29 · Third year</span><p>Physics and biochemistry. Take the MCAT in spring 2029. USUHS accepts scores no later than the fall test before matriculation.</p></li>
+        <li><span class="when"><span class="due">June – Oct 15, 2029</span></span><p>Apply through AMCAS (USUHS code 821). USUHS advises applying in June. Early Decision closes August 1, with notification by October 1.</p></li>
+        <li><span class="when">Fall 2029 – spring 2030</span><p>Secondary application, interview, and the commissioning physical. Finish every prerequisite by June 1, 2030.</p></li>
+        <li class="end"><span class="when">Summer 2030</span><p>Graduate, commission as an ensign, complete about a month of officer training, and start medical school in Bethesda.</p></li>
+      </ol>
+      <p class="note">Backup within Route B: the Navy’s Health Professions Scholarship Program pays for a civilian medical school in exchange for service, if USUHS doesn’t work out.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="now">
+  <h2 id="now">Do these now, either way</h2>
+  <ul class="do">
+    <li><strong>Protect the GPA</strong><span>Loyola grades follow her to every medical school application, including from USNA.</span></li>
+    <li><strong>Get clinical experience</strong><span>Steady, real patient contact matters more than a long list of short gigs.</span></li>
+    <li><strong>Start research early</strong><span>A lab position held for two or three years reads far better than one summer.</span></li>
+    <li><strong>Stay fit and lead</strong><span>USUHS trains officers as well as doctors. Fitness and leadership count on both routes.</span></li>
+  </ul>
+</section>
+
+<section aria-labelledby="facts">
+  <h2 id="facts">About USUHS</h2>
+  <dl class="facts">
+    <dt>Class size</dt><dd>178 students accepted each cycle.</dd>
+    <dt>Typical admits</dt><dd>Recent classes averaged roughly a 3.8 GPA and a 512 MCAT (third-party figures; check USUHS for current numbers).</dd>
+    <dt>Military experience</dt><dd>Not required. All applicants must meet commissioning standards: physical, medical, and security.</dd>
+    <dt>Cost and pay</dt><dd>No tuition. Students are active-duty ensigns paid at O-1.</dd>
+    <dt>Service owed</dt><dd>Seven years of active duty after graduation. Residency years don’t count toward it.</dd>
+    <dt>Age limit</dt><dd>No older than 36 on June 30 of the year she starts.</dd>
+  </dl>
+</section>
+
+<footer>
+  <p>Dates and requirements change. Confirm every deadline with USNA, USUHS, and Loyola before relying on it. Prepared November 2026.</p>
+  <p>Sources:</p>
+  <ul>
+    <li><a href="https://medschool.usuhs.edu/">USU School of Medicine admissions</a></li>
+    <li><a href="https://usuhs.smartcatalogiq.com/en/2026-2027/academic-catalog/school-of-medicine-som/admission-process">USUHS academic catalog, admission process</a></li>
+    <li><a href="https://www.usna.edu/ChemDept/ChemMajor/med-corps-info.php">USNA Medical Corps information</a></li>
+    <li><a href="https://www.loyola.edu/academics/pre-health/explore-pre-health/pre-medicine">Loyola University Maryland pre-medical track</a></li>
+    <li><a href="https://sgp.fas.org/crs/natsec/IF11385.pdf">Congressional Research Service: USUHS overview</a></li>
+  </ul>
+</footer>
+</div>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tabs button');
+  tabs.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      tabs.forEach(function(t){
+        var on=(t===btn);
+        t.setAttribute('aria-selected',on?'true':'false');
+        document.getElementById('route-'+t.dataset.route).hidden=!on;
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
