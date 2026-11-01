@@ -10,7 +10,7 @@
 <style>
 :root{
   --paper:#EDF1EF; --surface:#FFFFFF; --ink:#14254A; --text:#1E2A3A; --muted:#5B6B7A;
-  --brass:#9C7A33; --signal:#B3322B; --rule:#C9D3D1; --routeA:#14254A; --routeB:#2E6E68;
+  --brass:#9C7A33; --signal:#B3322B; --rule:#C9D3D1; --routeA:#14254A; --routeB:#2E6E68; --routeC:#7A4A86;
   --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
   --body:"Source Serif 4",Georgia,"Times New Roman",serif;
   color-scheme:light;
@@ -18,13 +18,13 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --paper:#0E1626; --surface:#162135; --ink:#E6ECEA; --text:#D5DDE0; --muted:#93A3B2;
-    --brass:#D4AE5E; --signal:#E36A60; --rule:#2A3A52; --routeA:#8FA8D8; --routeB:#6FC1B6;
+    --brass:#D4AE5E; --signal:#E36A60; --rule:#2A3A52; --routeA:#8FA8D8; --routeB:#6FC1B6; --routeC:#C9A3D6;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --paper:#0E1626; --surface:#162135; --ink:#E6ECEA; --text:#D5DDE0; --muted:#93A3B2;
-  --brass:#D4AE5E; --signal:#E36A60; --rule:#2A3A52; --routeA:#8FA8D8; --routeB:#6FC1B6;
+  --brass:#D4AE5E; --signal:#E36A60; --rule:#2A3A52; --routeA:#8FA8D8; --routeB:#6FC1B6; --routeC:#C9A3D6;
   color-scheme:dark;
 }
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -53,6 +53,7 @@ h3{font-family:var(--display);font-weight:600;font-size:1.45rem;line-height:1.1;
 @media (min-width:640px){.compare{grid-template-columns:1fr 1fr}}
 .compare div{padding:1rem 1.1rem;border-left:4px solid var(--routeA);background:var(--surface)}
 .compare div.b{border-left-color:var(--routeB)}
+.compare div.c{border-left-color:var(--routeC)}
 .compare strong{font-family:var(--display);font-size:1.25rem;font-weight:600;display:block;color:var(--ink)}
 .compare p{margin:.35rem 0 0;font-size:1rem}
 
@@ -81,6 +82,12 @@ ol.timeline li.end::before{background:var(--brass);border-color:var(--brass)}
 .when{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--ink);display:block}
 .when .due{color:var(--signal)}
 ol.timeline p{margin:.2rem 0 0;font-size:1rem}
+.route.c h3{color:var(--routeC)}
+.route.c ol.timeline li{border-left-color:var(--routeC)}
+.route.c ol.timeline li:last-child{border-left-color:transparent}
+.route.c ol.timeline li::before{border-color:var(--routeC)}
+.route.c ol.timeline li.end::before{border-color:var(--brass)}
+.route.c{max-width:44rem}
 .note{font-size:.95rem;color:var(--muted);margin-top:.5rem;padding:.75rem 1rem;background:var(--surface);border-left:4px solid var(--brass)}
 
 /* Checklist */
@@ -108,7 +115,7 @@ footer li{margin:.2rem 0}
 <div class="wrap">
 <header class="hero">
   <h1>Two routes to Bethesda</h1>
-  <p class="lede">Madison, both paths end at the Uniformed Services University medical school in Bethesda. Here’s how each one gets there, year by year, and what to do now no matter which door opens.</p>
+  <p class="lede">Madison, both paths end at the Uniformed Services University medical school in Bethesda. Here’s how each one gets there, year by year, plus a third route to medical school without the military, and what to do now no matter which door opens.</p>
   <svg class="merge" viewBox="0 0 640 170" role="img" aria-label="Two routes, the Naval Academy and civilian pre-med, joining at Bethesda">
     <path class="line" d="M10 30 C 220 30, 300 30, 420 85 L 560 85" fill="none" stroke="var(--routeA)" stroke-width="5" stroke-linecap="round"/>
     <path class="line" d="M10 140 C 220 140, 300 140, 420 85" fill="none" stroke="var(--routeB)" stroke-width="5" stroke-linecap="round"/>
@@ -123,11 +130,13 @@ footer li{margin:.2rem 0}
   <h2 id="short">The short version</h2>
   <div class="prose">
     <p>The civilian route isn’t the backup plan. For getting to medical school, it’s arguably the more direct one: USUHS takes civilians straight from college, and she could start there in 2030 instead of 2031.</p>
+    <p>If she’d rather be a doctor without serving, Route C skips the military entirely. In that case, the USNA application no longer makes sense: it means at least five years of service and competing for a handful of medical school slots.</p>
     <p>The Naval Academy is a great path to being a naval officer, but only a handful of midshipmen go directly to medical school each year. Its goal is 3 to 15 out of a class of about 1,000.</p>
   </div>
   <div class="compare">
     <div><strong>If USNA says yes</strong><p>Bethesda in summer 2031 at the earliest, if selected for one of the few medical school slots. Otherwise she serves as a line officer first.</p></div>
     <div class="b"><strong>If USNA says no</strong><p>Bethesda in summer 2030 if admitted. She’s commissioned as an ensign when she starts, with pay and no tuition.</p></div>
+    <div class="c"><strong>If she skips the military</strong><p>Civilian medical school in 2030, or 2031 after a gap year. No service owed; cost depends on in-state tuition and financial aid.</p></div>
   </div>
 </section>
 
@@ -170,13 +179,30 @@ footer li{margin:.2rem 0}
   </div>
 </section>
 
+<section aria-labelledby="route-c-h">
+  <h2 id="route-c-h">Or: medical school without the military</h2>
+  <div class="route c" id="route-c">
+    <h3>Route C: Civilian medical school</h3>
+    <p class="sub">Withdraw from USNA, finish college as cheaply as possible, start medical school in 2030 or 2031</p>
+    <ol class="timeline">
+      <li><span class="when">Now – spring 2027</span><p>Withdraw the USNA application. Her spring courses are already right for pre-med. Meet Loyola’s pre-health advisors and start steady clinical volunteering.</p></li>
+      <li><span class="when">Spring 2027</span><p>Decide Loyola or UMD based mostly on cost. Medical schools care about GPA, MCAT, clinical hours and research, not which college she went to. UMD has in-state tuition, a large research program and a neuroscience major.</p></li>
+      <li><span class="when">2027 – 2029</span><p>Finish the prerequisites, get paid clinical work (EMT or scribing), and stay in one research lab for years. Neuroscience research fits her interest in neurology.</p></li>
+      <li><span class="when">Spring 2029</span><p>Take the MCAT.</p></li>
+      <li><span class="when"><span class="due">June 2029</span></span><p>Apply through AMCAS to 20 or more MD schools, and consider DO schools too. Or take a gap year of paid clinical or research work and apply in June 2030. Many admitted students take at least one gap year.</p></li>
+      <li class="end"><span class="when">Summer 2030 or 2031</span><p>Start medical school.</p></li>
+    </ol>
+    <p class="note">Where to aim as a Maryland resident: the University of Maryland School of Medicine is the public in-state option and her most realistic target. Johns Hopkins made tuition free starting fall 2024 for students from families earning under $300,000, and also covers living costs under $175,000. Admission there is very hard, but if she gets in, it may cost less than a state school. NYU and Albert Einstein are also tuition-free and very competitive. Federal Public Service Loan Forgiveness can forgive remaining federal loans after 10 years of payments while working for a nonprofit or public employer, which includes many academic hospitals.</p>
+  </div>
+</section>
+
 <section aria-labelledby="now">
-  <h2 id="now">Do these now, either way</h2>
+  <h2 id="now">Do these now, whichever route</h2>
   <ul class="do">
     <li><strong>Protect the GPA</strong><span>Loyola grades follow her to every medical school application, including from USNA.</span></li>
     <li><strong>Get clinical experience</strong><span>Steady, real patient contact matters more than a long list of short gigs.</span></li>
     <li><strong>Start research early</strong><span>A lab position held for two or three years reads far better than one summer.</span></li>
-    <li><strong>Stay fit and lead</strong><span>USUHS trains officers as well as doctors. Fitness and leadership count on both routes.</span></li>
+    <li><strong>Stay fit and lead</strong><span>USUHS trains officers as well as doctors. Fitness and leadership count on both military routes, and leadership helps any medical school application.</span></li>
   </ul>
 </section>
 
@@ -200,6 +226,10 @@ footer li{margin:.2rem 0}
     <li><a href="https://usuhs.smartcatalogiq.com/en/2026-2027/academic-catalog/school-of-medicine-som/admission-process">USUHS academic catalog, admission process</a></li>
     <li><a href="https://www.usna.edu/ChemDept/ChemMajor/med-corps-info.php">USNA Medical Corps information</a></li>
     <li><a href="https://www.loyola.edu/academics/pre-health/explore-pre-health/pre-medicine">Loyola University Maryland pre-medical track</a></li>
+    <li><a href="https://www.medschool.umaryland.edu/admissions/">University of Maryland School of Medicine admissions</a></li>
+    <li><a href="https://www.wypr.org/wypr-news/2024-07-08/johns-hopkins-will-offer-free-medical-school-tuition-to-two-thirds-of-student-body">WYPR: Johns Hopkins free medical school tuition (July 2024)</a></li>
+    <li><a href="https://students-residents.aamc.org/applying-medical-school-amcas/applying-medical-school-amcas">AAMC: applying through AMCAS</a></li>
+    <li><a href="https://studentaid.gov/manage-loans/forgiveness-cancellation/public-service">Federal Student Aid: Public Service Loan Forgiveness</a></li>
     <li><a href="https://sgp.fas.org/crs/natsec/IF11385.pdf">Congressional Research Service: USUHS overview</a></li>
   </ul>
 </footer>
