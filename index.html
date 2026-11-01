@@ -102,6 +102,34 @@ dl.facts{display:grid;grid-template-columns:1fr;gap:.25rem 1.5rem;max-width:44re
 dl.facts dt{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--ink)}
 dl.facts dd{margin:0 0 .75rem}
 
+.odds-stats{display:grid;gap:1rem;grid-template-columns:1fr;max-width:52rem;margin:0 0 1.75rem}
+@media (min-width:640px){.odds-stats{grid-template-columns:1fr 1fr}}
+.odds-stats div{background:var(--surface);padding:1rem 1.1rem;border-left:4px solid var(--routeB)}
+.odds-stats div.a{border-left-color:var(--routeA)}
+.odds-stats .big{font-family:var(--display);font-weight:700;font-size:2.6rem;line-height:1;color:var(--ink);display:block}
+.odds-stats .lbl{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);display:block;margin:.15rem 0 .35rem}
+.odds-stats p{margin:0;font-size:1rem}
+.tablewrap{max-width:60rem;overflow-x:auto}
+table.odds{border-collapse:collapse;width:100%;min-width:34rem;background:var(--surface);font-size:.98rem}
+table.odds caption{text-align:left;font-family:var(--display);font-weight:600;font-size:1.3rem;color:var(--ink);padding:0 0 .5rem}
+table.odds th,table.odds td{padding:.7rem .8rem;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+table.odds thead th{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--ink);border-bottom:2px solid var(--rule)}
+table.odds thead th.a{color:var(--routeA)} table.odds thead th.b{color:var(--routeB)}
+table.odds tbody th{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--ink)}
+table.odds .stat{display:block;font-family:var(--body);font-weight:400;font-size:.9rem;color:var(--muted)}
+table.odds thead th:nth-child(2){width:8.5rem}
+table.odds td[data-label]::before{content:none}
+@media (max-width:639px){
+  table.odds{min-width:0}
+  table.odds thead{display:none}
+  table.odds tr,table.odds th,table.odds td{display:block}
+  table.odds tr{border-bottom:2px solid var(--rule);padding:.25rem 0}
+  table.odds th,table.odds td{border-bottom:0;padding:.45rem .9rem}
+  table.odds td[data-label]::before{content:attr(data-label);display:block;font-family:var(--display);font-weight:600;font-size:1rem}
+  table.odds td.b::before{color:var(--routeB)} table.odds td.a::before{color:var(--routeA)}
+  table.odds td.m::before{color:var(--muted)}
+}
+table.odds .pct{font-family:var(--display);font-weight:700;font-size:1.25rem;color:var(--ink)}
 footer{padding:2rem 0 3rem;border-top:1px solid var(--rule);font-size:.9rem;color:var(--muted)}
 footer ul{padding-left:1.1rem;margin:.5rem 0 1rem}
 footer li{margin:.2rem 0}
@@ -142,6 +170,27 @@ footer li{margin:.2rem 0}
     <div class="b"><strong>If USNA says no</strong><p>Bethesda in summer 2030 if admitted. She’s commissioned as an ensign when she starts, with pay and no tuition.</p></div>
     <div class="c"><strong>If she skips the military</strong><p>Civilian medical school in 2030, or 2031 after a gap year. No service owed; cost depends on in-state tuition and financial aid.</p></div>
   </div>
+</section>
+
+<section aria-labelledby="odds">
+  <h2 id="odds">What are the odds of reaching USUHS?</h2>
+  <div class="prose"><p>Going straight to USUHS as a civilian is one hurdle: get admitted. Going through USNA is three: get into the Academy, win one of a handful of medical school slots, and then still be admitted by USUHS.</p></div>
+  <div class="odds-stats">
+    <div class="b"><span class="big">12%</span><span class="lbl">Civilian applicants who got an offer</span><p>Class of 2030: 292 offers to 2,338 applicants, for a class of 177. Most of the class are civilians.</p></div>
+    <div class="a"><span class="big">~1.5%</span><span class="lbl">USNA graduates allowed straight to med school</span><p>Roughly 15 a year out of about 1,000, and only some of those go to USUHS. That cap comes from a 2006 Navy manual; confirm the current number with USNA.</p></div>
+  </div>
+  <div class="tablewrap">
+  <table class="odds">
+    <caption>Weak vs. strong candidate</caption>
+    <thead><tr><th scope="col">Candidate</th><th scope="col">Any MD school<span class="stat">AAMC national rate</span></th><th scope="col" class="b">Civilian → USUHS</th><th scope="col" class="a">USNA → USUHS</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Weak<span class="stat">GPA 3.40–3.59, MCAT 502–505</span></th><td class="m" data-label="Any MD school (AAMC)"><span class="pct">28%</span></td><td class="b" data-label="Civilian → USUHS">Long shot: well below USUHS averages. But she can fix it with a gap year, an MCAT retake or postbac classes, then reapply.</td><td class="a" data-label="USNA → USUHS">Very unlikely to win one of the few slots. No second try until after at least five years as a line officer.</td></tr>
+      <tr><th scope="row">Typical<span class="stat">GPA 3.60–3.79, MCAT 510–513</span></th><td class="m" data-label="Any MD school (AAMC)"><span class="pct">57%</span></td><td class="b" data-label="Civilian → USUHS">Competitive: close to recent USUHS averages (about 3.8 and 512). Interview, fitness and leadership decide it.</td><td class="a" data-label="USNA → USUHS">Possible only if she ranks near the top of the pre-med midshipmen. Class rank and military performance also count.</td></tr>
+      <tr><th scope="row">Strong<span class="stat">GPA 3.80+, MCAT 514–517</span></th><td class="m" data-label="Any MD school (AAMC)"><span class="pct">75%</span></td><td class="b" data-label="Civilian → USUHS">Strong odds: above USUHS averages, and she can also apply to civilian schools and the Navy scholarship (HPSP) at the same time.</td><td class="a" data-label="USNA → USUHS">Good chance at a slot, but the slot count is capped no matter how strong she is, and she must first get into USNA.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">The “Any MD school” figure is the share of applicants accepted by at least one U.S. MD school (AAMC Table A-23, 2021–2024 combined). USUHS doesn’t publish its own odds by GPA and MCAT, or separately for civilians, so the two route columns are judgment calls based on its averages. Bottom line: if USUHS is the goal, the civilian route is faster and more likely at every level. USNA only makes sense if she wants to be a naval officer for its own sake.</p>
 </section>
 
 <section aria-labelledby="routes">
@@ -213,7 +262,7 @@ footer li{margin:.2rem 0}
 <section aria-labelledby="facts">
   <h2 id="facts">About USUHS</h2>
   <dl class="facts">
-    <dt>Class size</dt><dd>178 students accepted each cycle.</dd>
+    <dt>Class size</dt><dd>About 177 students per class. The Class of 2030 drew 2,338 applicants.</dd>
     <dt>Typical admits</dt><dd>Recent classes averaged roughly a 3.8 GPA and a 512 MCAT (third-party figures; check USUHS for current numbers).</dd>
     <dt>Military experience</dt><dd>Not required. All applicants must meet commissioning standards: physical, medical, and security.</dd>
     <dt>Cost and pay</dt><dd>No tuition. Students are active-duty ensigns paid at O-1.</dd>
@@ -234,6 +283,9 @@ footer li{margin:.2rem 0}
     <li><a href="https://www.wypr.org/wypr-news/2024-07-08/johns-hopkins-will-offer-free-medical-school-tuition-to-two-thirds-of-student-body">WYPR: Johns Hopkins free medical school tuition (July 2024)</a></li>
     <li><a href="https://students-residents.aamc.org/applying-medical-school-amcas/applying-medical-school-amcas">AAMC: applying through AMCAS</a></li>
     <li><a href="https://studentaid.gov/manage-loans/forgiveness-cancellation/public-service">Federal Student Aid: Public Service Loan Forgiveness</a></li>
+    <li><a href="https://news.usuhs.edu/2026/08/usu-welcomes-177-future-military.html">USU: Class of 2030 admissions figures</a></li>
+    <li><a href="https://www.aamc.org/media/6091/download">AAMC Table A-23: MCAT and GPA grid for MD applicants</a></li>
+    <li><a href="https://www.mynavyhr.navy.mil/Portals/55/Reference/MILPERSMAN/1000/1500Training/1500-030.pdf">MILPERSMAN 1500-030: USNA graduates to USUHS and HPSP</a></li>
     <li><a href="https://sgp.fas.org/crs/natsec/IF11385.pdf">Congressional Research Service: USUHS overview</a></li>
   </ul>
 </footer>
